@@ -21,23 +21,37 @@ To compile the library, navigate to the project directory and execute the follow
 ```bash
 g++ -std=c++11 -o uthreads uthreads.cpp tools.cpp Thread.cpp -lpthread
 ```
+# Running the Library
 
+Integrate this library into your C++ applications by including `uthreads.h` and linking against the compiled library. This setup allows you to utilize the user-level thread management provided by the library.
 
-Running the Library
-You can integrate this library into your C++ applications by including uthreads.h and linking against the compiled library. This allows you to utilize the user-level thread management provided by the library.
+## API Reference
 
-API Reference
-This library provides several functions to manage threads within C++ applications:
+The library offers a variety of functions to manage threads within C++ applications:
 
-uthread_spawn(thread_entry_point entry_point): Spawns a new thread that starts execution at the specified entry point function.
-uthread_terminate(int tid): Terminates the thread identified by tid.
-uthread_block(int tid): Blocks the thread identified by tid, preventing it from being scheduled until resumed.
-uthread_resume(int tid): Resumes the execution of a previously blocked thread identified by tid.
-uthread_sleep(int num_quantums): Puts the currently RUNNING thread to sleep for num_quantums scheduling intervals.
-For more detailed information on each API function, please refer to the function prototypes and comments in the uthreads.h file.
+- **`uthread_spawn(thread_entry_point entry_point)`**  
+  Spawns a new thread that begins execution at the specified entry point.
 
-Built With
-C++: The primary programming language used.
-Unix Standard Libraries: Utilized for handling low-level operating system interactions.
-Authors
-Yinon Kedem: Principal developer and maintainer of the project.
+- **`uthread_terminate(int tid)`**  
+  Terminates the thread identified by `tid`.
+
+- **`uthread_block(int tid)`**  
+  Blocks the thread identified by `tid`, preventing it from being scheduled until resumed.
+
+- **`uthread_resume(int tid)`**  
+  Resumes the execution of a previously blocked thread identified by `tid`.
+
+- **`uthread_sleep(int num_quantums)`**  
+  Puts the currently RUNNING thread to sleep for the specified number of quantums.
+
+For more detailed information on each API function, please refer to the function prototypes and comments in the `uthreads.h` file.
+
+## Built With
+
+- **C++**: The primary programming language used.
+- **Unix Standard Libraries**: Utilized for handling low-level operating system interactions.
+
+## Authors
+
+- **Yinon Kedem**: Principal developer and maintainer of the project.
+
