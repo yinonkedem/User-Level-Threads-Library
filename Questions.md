@@ -1,52 +1,47 @@
-FILES:
-MapReduceFramework.cpp- the framework will support running a MapReduce operations as an
- asynchrony job, together with ability to query the current state of a job while it is running
-Barrier.h - a multiple use barrier -header file
-Barrier.cpp - a multiple use barrier -cpp file
-
-unthreads.cpp - thread library cpp file
-tools.h - tools file - header file
-tools.cpp - tools file - cpp file
-Thread.h - thread class header file
-Thread.cpp - thread class cpp file
-
-
 # Operating Systems Course Questions & Answers
 
-## Table of Contents
-- [Question 1: `siglongjmp` and `sigsetjmp`](#question-1-siglongjmp-and-sigsetjmp)
-- [Question 2: Use of User-Level Threads](#question-2-use-of-user-level-threads)
-- [Question 3: Google Chrome Processes](#question-3-google-chrome-processes)
-- [Question 4: Interrupts and Signals](#question-4-interrupts-and-signals)
-- [Question 5: Real vs Virtual Time](#question-5-real-vs-virtual-time)
+## Overview
+This document provides answers to frequently asked questions for the Operating Systems course. It covers topics like system calls, user-level threads, and process management in Google Chrome, among others.
 
-## Question 1: `siglongjmp` and `sigsetjmp`
-### a. Function Descriptions
-- **`sigsetjmp`**: Stores stack context and CPU state. Returns zero initially and a user-defined value when returning from `siglongjmp`.
-- **`siglongjmp`**: Jumps back to the location saved by `sigsetjmp`, restoring the saved state.
+## Contents
+1. [siglongjmp and sigsetjmp](#siglongjmp-and-sigsetjmp)
+2. [Use of User-Level Threads](#use-of-user-level-threads)
+3. [Google Chrome Processes](#google-chrome-processes)
+4. [Interrupts and Signals](#interrupts-and-signals)
+5. [Real vs Virtual Time](#real-vs-virtual-time)
 
-### b. Effect on Masking
-- **`sigsetjmp`**: Optionally saves the signal mask if the second argument is non-zero.
-- **`siglongjmp`**: Restores the signal mask if saved by `sigsetjmp`.
+## siglongjmp and sigsetjmp
+### Description
+- **sigsetjmp**: Saves the stack context and CPU state for later use by siglongjmp. If called directly, it returns 0. When returning from siglongjmp, it returns a non-zero value.
+- **siglongjmp**: Restores the saved stack context and CPU state, effectively resuming execution from the point where sigsetjmp was called.
 
-## Question 2: Use of User-Level Threads
-Video games can benefit from user-level threads due to their lower context switch costs and specific application-focused scheduling, enhancing performance and responsiveness, especially in handling multiple tasks like rendering and input processing simultaneously.
+### Effect on Masking
+- **sigsetjmp**: Optionally saves the current signal mask if its second argument is non-zero.
+- **siglongjmp**: Restores the saved signal mask if it was saved by sigsetjmp.
 
-## Question 3: Google Chrome Processes
+## Use of User-Level Threads
+User-level threads, such as those used in video game development, offer faster context switches and more flexible scheduling than kernel-level threads. They allow for efficient multitasking within applications, enhancing responsiveness and performance.
+
+## Google Chrome Processes
 ### Advantages
-- Improved isolation and stability, each process crash affects only a single tab.
-- Enhanced security and better parallel performance on multi-core systems.
+- Isolation: Each tab is a separate process, so issues in one tab don't affect others.
+- Security: Process isolation enhances security.
+- Performance: Can utilize multi-core processors effectively.
 
 ### Disadvantages
-- Higher resource consumption and slower startup times.
-- More complex inter-process communication.
+- Resource Intensive: Uses more resources than using threads.
+- Complex Communication: Inter-process communication is slower and more complex than inter-thread communication.
 
-## Question 4: Interrupts and Signals
-Executing `kill pid` sends a SIGTERM to terminate a process. This command is processed by the shell and handled by the OS kernel, not involving the keyboard directly but requiring the application to handle the termination signal properly.
+## Interrupts and Signals
+Commands like `kill pid` involve signals such as SIGTERM, which instructs a process to terminate. The OS handles the delivery of these signals, and the application must manage the signal to gracefully stop operations.
 
-## Question 5: Real vs Virtual Time
-- **Real Time**: Measures wall-clock time, used for tasks like scheduling and timestamping. Example: System timers tracking current date and time.
-- **Virtual Time**: Measures CPU time consumed by a process. Example: Output from the `time` command in Unix, showing CPU time used during program execution.
+## Real vs Virtual Time
+- **Real Time**: Elapsed time measured by a clock, used in applications like timers and alarms.
+- **Virtual Time**: CPU time used by a process, important for profiling and performance measurements.
 
 ## Authors
-- **Yinon Kedem**: Principal developer and maintainer of the project.
+- **Yinon Kedem**: Principal developer and maintainer of this project.
+
+---
+
+For detailed usage of each API function and more in-depth information, please refer to the specific function prototypes and comments in the `uthreads.h` file.
