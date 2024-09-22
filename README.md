@@ -17,9 +17,8 @@ Ensure you have a C++ compiler that supports C++11 (like g++), and standard Unix
 # Compilation
 
 To compile the library, navigate to the project directory and run the following command:
+g++ your_program.cpp -luthreads -o your_program
 
-```bash
-g++ -std=c++11 -o uthreads uthreads.cpp tools.cpp Thread.cpp -lpthread
 
 Running the Library
 You can integrate this library into your C++ applications by including uthreads.h and linking against the compiled library. This allows you to utilize the user-level thread management provided by the library.
