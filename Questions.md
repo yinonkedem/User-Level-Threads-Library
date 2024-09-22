@@ -10,7 +10,7 @@ This document provides answers to frequently asked questions for the Operating S
 4. [Interrupts and Signals](#interrupts-and-signals)
 5. [Real vs Virtual Time](#real-vs-virtual-time)
 
-## siglongjmp and sigsetjmp
+## 1) siglongjmp and sigsetjmp
 ### Description
 - **sigsetjmp**: Saves the stack context and CPU state for later use by siglongjmp. If called directly, it returns 0. When returning from siglongjmp, it returns a non-zero value.
 - **siglongjmp**: Restores the saved stack context and CPU state, effectively resuming execution from the point where sigsetjmp was called.
@@ -19,10 +19,10 @@ This document provides answers to frequently asked questions for the Operating S
 - **sigsetjmp**: Optionally saves the current signal mask if its second argument is non-zero.
 - **siglongjmp**: Restores the saved signal mask if it was saved by sigsetjmp.
 
-## Use of User-Level Threads
+## 2) Use of User-Level Threads
 User-level threads, such as those used in video game development, offer faster context switches and more flexible scheduling than kernel-level threads. They allow for efficient multitasking within applications, enhancing responsiveness and performance.
 
-## Google Chrome Processes
+## 3) Google Chrome Processes
 ### Advantages
 - Isolation: Each tab is a separate process, so issues in one tab don't affect others.
 - Security: Process isolation enhances security.
@@ -32,10 +32,10 @@ User-level threads, such as those used in video game development, offer faster c
 - Resource Intensive: Uses more resources than using threads.
 - Complex Communication: Inter-process communication is slower and more complex than inter-thread communication.
 
-## Interrupts and Signals
+## 4) Interrupts and Signals
 Commands like `kill pid` involve signals such as SIGTERM, which instructs a process to terminate. The OS handles the delivery of these signals, and the application must manage the signal to gracefully stop operations.
 
-## Real vs Virtual Time
+## 5) Real vs Virtual Time
 - **Real Time**: Elapsed time measured by a clock, used in applications like timers and alarms.
 - **Virtual Time**: CPU time used by a process, important for profiling and performance measurements.
 
