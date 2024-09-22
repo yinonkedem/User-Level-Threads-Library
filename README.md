@@ -14,10 +14,13 @@ This project implements a user-level threads library (uthreads), developed for t
 ### Prerequisites
 Ensure you have a C++ compiler that supports C++11 (like g++), and standard Unix libraries.
 
-# Compilation
+# Compilation and Usage Guide
 
-To compile the library, navigate to the project directory and run the following command:
-g++ your_program.cpp -luthreads -o your_program
+## Compilation
+To compile the library, navigate to the project directory and execute the following command:
+```bash
+g++ -std=c++11 -o uthreads uthreads.cpp tools.cpp Thread.cpp -lpthread
+```
 
 
 Running the Library
