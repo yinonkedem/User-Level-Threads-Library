@@ -1,16 +1,3 @@
-FILES:
-MapReduceFramework.cpp- the framework will support running a MapReduce operations as an
- asynchrony job, together with ability to query the current state of a job while it is running
-Barrier.h - a multiple use barrier -header file
-Barrier.cpp - a multiple use barrier -cpp file
-
-unthreads.cpp - thread library cpp file
-tools.h - tools file - header file
-tools.cpp - tools file - cpp file
-Thread.h - thread class header file
-Thread.cpp - thread class cpp file
-
-
 # Operating Systems Course Questions & Answers
 
 ## Table of Contents
