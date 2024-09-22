@@ -1,7 +1,3 @@
-shahar_14, yinonkedem
-Shahar Hanoch (206775553), Yinon Kedem (208670794)
-EX: 3
-
 FILES:
 MapReduceFramework.cpp- the framework will support running a MapReduce operations as an
  asynchrony job, together with ability to query the current state of a job while it is running
@@ -15,64 +11,42 @@ Thread.h - thread class header file
 Thread.cpp - thread class cpp file
 
 
-ANSWERS:
-Part I: Theoretical Questions
-Q1:
-1.'Siglongjmp' and 'Sigsetjmp':
+# Operating Systems Course Questions & Answers
 
-a.
-'sigsetjmp': This function stores the stack context and CPU state in the env variable
-provided as an argument. If the program subsequently jumps back using 'siglongjmp',
-it will return a user-defined value; otherwise, it returns zero.
+## Table of Contents
+- [Question 1: `siglongjmp` and `sigsetjmp`](#question-1-siglongjmp-and-sigsetjmp)
+- [Question 2: Use of User-Level Threads](#question-2-use-of-user-level-threads)
+- [Question 3: Google Chrome Processes](#question-3-google-chrome-processes)
+- [Question 4: Interrupts and Signals](#question-4-interrupts-and-signals)
+- [Question 5: Real vs Virtual Time](#question-5-real-vs-virtual-time)
 
-'siglongjmp': This function transfers control back to the point where 'sigsetjmp' was called,
-restoring the CPU state saved in the env variable, which is given as an input to the function.
-It does not return any value.
+## Question 1: `siglongjmp` and `sigsetjmp`
+### a. Function Descriptions
+- **`sigsetjmp`**: Stores stack context and CPU state. Returns zero initially and a user-defined value when returning from `siglongjmp`.
+- **`siglongjmp`**: Jumps back to the location saved by `sigsetjmp`, restoring the saved state.
 
-b.
-'sigsetjmp': Optionally saves the signal mask (set of blocked signals) if the second argument is non-zero.
-This allows the program to remember which signals were blocked at the time of the call.
+### b. Effect on Masking
+- **`sigsetjmp`**: Optionally saves the signal mask if the second argument is non-zero.
+- **`siglongjmp`**: Restores the signal mask if saved by `sigsetjmp`.
 
-'siglongjmp': Restores the signal mask if it was saved by 'sigsetjmp', reverting the signal blocking
-state to what it was at the time of the 'sigsetjmp' call. If the signal mask was not saved,
-the current signal blocking state remains unchanged.
+## Question 2: Use of User-Level Threads
+Video games can benefit from user-level threads due to their lower context switch costs and specific application-focused scheduling, enhancing performance and responsiveness, especially in handling multiple tasks like rendering and input processing simultaneously.
 
-Q2:
-2.One example of using user-level threads is in video games. Games often have to
-handle multiple tasks simultaneously, such as rendering graphics, processing user
-input, and managing game logic, while maintaining smooth gameplay.
-Assigning each of these tasks to a separate thread can improve performance.
-Using user-level threads is reasonable here because scheduling can be application-specific,
-allowing the game to prioritize threads based on specific requirements.
-Additionally, switching between threads is much cheaper with user-level threads,
-resulting in better overall performance and responsiveness.
+## Question 3: Google Chrome Processes
+### Advantages
+- Improved isolation and stability, each process crash affects only a single tab.
+- Enhanced security and better parallel performance on multi-core systems.
 
-Q3:
-3.Creating a new process for each tab in Google's Chrome browser offers several advantages,
-including improved isolation and stability, as crashes in one tab do not affect others,
-and enhanced security through process isolation. It also allows better resource management and
-memory management, preventing memory leaks from spreading across tabs.
-Additionally, processes can run in true parallel on multi-core systems, boosting performance.
-However, this approach has disadvantages, such as higher overhead due to the
-resource-intensive nature of processes, more complex and slower inter-process
-communication, longer startup times for new processes, and potential inefficiencies
-from resource duplication across processes.
+### Disadvantages
+- Higher resource consumption and slower startup times.
+- More complex inter-process communication.
 
-Q4:
-4. When the kill pid command is executed, it usually sends a SIGTERM signal (signal number 15)
-to the specified process, asking it to terminate. The keyboard is not directly involved in
-this process, the user initiates it through the shell. The shell interprets the kill pid
-command and makes a system call to the operating system kernel, which then sends the
-signal to the target process. The OS kernel handles the signal delivery, while the
-application must appropriately handle the signal it receives from the OS.
+## Question 4: Interrupts and Signals
+Executing `kill pid` sends a SIGTERM to terminate a process. This command is processed by the shell and handled by the OS kernel, not involving the keyboard directly but requiring the application to handle the termination signal properly.
 
-Q5:
-5. Real time refers to the actual elapsed time as measured by a clock, such as the wall-clock
-time used for timestamping files or scheduling tasks. An example of real-time use is a system
-timer that tracks the current time and date. Virtual time, also known as CPU time,
-measures the amount of time a process spends using the CPU, excluding periods
-when the process is inactive. An example of virtual time use is the CPU time reported
-by the time command in Unix-based systems, which shows the total processor
-time a program has consumed during its execution.
+## Question 5: Real vs Virtual Time
+- **Real Time**: Measures wall-clock time, used for tasks like scheduling and timestamping. Example: System timers tracking current date and time.
+- **Virtual Time**: Measures CPU time consumed by a process. Example: Output from the `time` command in Unix, showing CPU time used during program execution.
 
-
+## Authors
+- **Yinon Kedem**: Principal developer and maintainer of the project.
